@@ -182,7 +182,6 @@
         <h2 class="mt-2 text-4xl font-serif font-bold text-dark">Featured Products</h2>
         <div class="mt-4 h-1 w-20 bg-accent mx-auto"></div>
       </div>
-      
       <div class="video-wrapper">
   <iframe
     id="cloudinaryVideo"
@@ -195,16 +194,14 @@
 <style>
 .video-wrapper {
   width: 100%;
-  max-width: 800px;
-  margin: auto;
+  height: 420px;    /* FIXED HEIGHT */
+  margin: 40px 0;
 }
 
 .video-wrapper iframe {
   width: 100%;
-  aspect-ratio: 16 / 9;
+  height: 100%;     /* FILL PARENT HEIGHT */
   border: none;
-
-  /* Prevent ALL clicking / touching */
   pointer-events: none;
 }
 </style>
@@ -216,7 +213,7 @@ const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        iframe.src = iframe.src; // play when visible
+        iframe.src = iframe.src;
       }
     });
   },
@@ -225,6 +222,7 @@ const observer = new IntersectionObserver(
 
 observer.observe(iframe);
 </script>
+
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         <!-- Jallabiyas -->
