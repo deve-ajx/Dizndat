@@ -74,6 +74,50 @@
   </style>
 </head>
 <body class="font-sans bg-light text-dark">
+  <!-- VIDEO AT TOP OF PAGE -->
+<div class="video-wrapper">
+  <iframe
+    id="cloudinaryVideo"
+    src="https://player.cloudinary.com/embed/?cloud_name=dm6k0etap&public_id=Firefly_A_dramatic_cinematic_logo_reveal_with_no_people_no_products_only_space_earth_and_stone_ewavmt&autoplay=true&muted=true&loop=true&controls=false"
+    allow="autoplay; fullscreen"
+    allowfullscreen
+  ></iframe>
+</div>
+
+<style>
+.video-wrapper {
+  width: 100%;
+  height: 420px;    /* visible height */
+  margin-bottom: 40px;
+}
+
+.video-wrapper iframe {
+  width: 100%;
+  height: 100%;     /* fill the parent height */
+  border: none;
+  pointer-events: none; /* disables clicks */
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const iframe = document.getElementById("cloudinaryVideo");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          iframe.src = iframe.src; // autoplay when visible
+        }
+      });
+    },
+    { threshold: 0.5 }
+  );
+
+  observer.observe(iframe);
+});
+</script>
+
   <!-- UPDATES PANEL -->
 <div id="updatesPanel"
      class="hidden fixed top-8 right-3 bg-gray rounded-xl shadow-x1 p-12 z-50 w-60">
@@ -182,46 +226,6 @@
         <h2 class="mt-2 text-4xl font-serif font-bold text-dark">Featured Products</h2>
         <div class="mt-4 h-1 w-20 bg-accent mx-auto"></div>
       </div>
-      <div class="video-wrapper">
-  <iframe
-    id="cloudinaryVideo"
-    src="https://player.cloudinary.com/embed/?cloud_name=dm6k0etap&public_id=Firefly_A_dramatic_cinematic_logo_reveal_with_no_people_no_products_only_space_earth_and_stone_ewavmt&autoplay=true&muted=true&loop=true&controls=false"
-    allow="autoplay; fullscreen"
-    allowfullscreen
-  ></iframe>
-</div>
-
-<style>
-.video-wrapper {
-  width: 100%;
-  height: 420px;    /* FIXED HEIGHT */
-  margin: 40px 0;
-}
-
-.video-wrapper iframe {
-  width: 100%;
-  height: 100%;     /* FILL PARENT HEIGHT */
-  border: none;
-  pointer-events: none;
-}
-</style>
-
-<script>
-const iframe = document.getElementById("cloudinaryVideo");
-
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        iframe.src = iframe.src;
-      }
-    });
-  },
-  { threshold: 0.5 }
-);
-
-observer.observe(iframe);
-</script>
 
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
