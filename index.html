@@ -183,6 +183,49 @@
         <div class="mt-4 h-1 w-20 bg-accent mx-auto"></div>
       </div>
       
+      <div class="video-wrapper">
+  <iframe
+    id="cloudinaryVideo"
+    src="https://player.cloudinary.com/embed/?cloud_name=dm6k0etap&public_id=Firefly_A_dramatic_cinematic_logo_reveal_with_no_people_no_products_only_space_earth_and_stone_ewavmt&autoplay=true&muted=true&loop=true&controls=false"
+    allow="autoplay; fullscreen"
+    allowfullscreen
+  ></iframe>
+</div>
+
+<style>
+.video-wrapper {
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+}
+
+.video-wrapper iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+
+  /* Prevent ALL clicking / touching */
+  pointer-events: none;
+}
+</style>
+
+<script>
+const iframe = document.getElementById("cloudinaryVideo");
+
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        iframe.src = iframe.src; // play when visible
+      }
+    });
+  },
+  { threshold: 0.5 }
+);
+
+observer.observe(iframe);
+</script>
+
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         <!-- Jallabiyas -->
         <div class="product-card relative group overflow-hidden rounded-xl shadow-lg bg-white transition-all duration-300 hover:shadow-xl">
