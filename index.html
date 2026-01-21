@@ -74,48 +74,6 @@
   </style>
 </head>
 <body class="font-sans bg-light text-dark">
- <div class="video-wrapper">
-  <iframe
-    id="cloudinaryVideo"
-    src="https://player.cloudinary.com/embed/?cloud_name=dm6k0etap&public_id=Firefly_A_dramatic_cinematic_logo_reveal_with_no_people_no_products_only_space_earth_and_stone_ewavmt&autoplay=true&muted=true&loop=true&controls=false"
-    allow="autoplay; fullscreen"
-    allowfullscreen
-  ></iframe>
-</div>
-
-<style>
-.video-wrapper {
-  width: 100%;
-  max-width: 800px;
-  margin: auto;
-}
-
-.video-wrapper iframe {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  border: none;
-
-  /* Prevent ALL clicking / touching */
-  pointer-events: none;
-}
-</style>
-
-<script>
-const iframe = document.getElementById("cloudinaryVideo");
-
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        iframe.src = iframe.src; // play when visible
-      }
-    });
-  },
-  { threshold: 0.5 }
-);
-
-observer.observe(iframe);
-</script>
 
 </script>
 
@@ -250,6 +208,54 @@ observer.observe(iframe);
             <p class="text-gray-600">Elegant designs with premium fabrics</p>
           </div>
         </div>
+        <div class="video-wrapper">
+  <iframe
+    id="cloudinaryVideo"
+    src="https://player.cloudinary.com/embed/?cloud_name=dm6k0etap&public_id=Firefly_A_dramatic_cinematic_logo_reveal_with_no_people_no_products_only_space_earth_and_stone_ewavmt&autoplay=true&muted=true&loop=true&controls=false"
+    allow="autoplay; fullscreen"
+    allowfullscreen
+  ></iframe>
+</div>
+
+<style>
+.video-wrapper {
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+}
+
+.video-wrapper iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const iframe = document.getElementById("cloudinaryVideo");
+  if (!iframe) return;
+
+  // IntersectionObserver to play video when at least 50% visible
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Tell Cloudinary player to play
+          iframe.contentWindow.postMessage(
+            JSON.stringify({ method: "play" }),
+            "*"
+          );
+        }
+      });
+    },
+    { threshold: 0.5 }
+  );
+
+  observer.observe(iframe);
+});
+</script>
+
         
         <!-- Perfumes -->
         <div class="product-card relative group overflow-hidden rounded-xl shadow-lg bg-white transition-all duration-300 hover:shadow-xl">
