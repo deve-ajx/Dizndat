@@ -74,48 +74,7 @@
   </style>
 </head>
 <body class="font-sans bg-light text-dark">
-  <!-- VIDEO AT TOP OF PAGE -->
-<div class="video-wrapper">
-  <iframe
-    id="cloudinaryVideo"
-    src="https://player.cloudinary.com/embed/?cloud_name=dm6k0etap&public_id=Firefly_A_dramatic_cinematic_logo_reveal_with_no_people_no_products_only_space_earth_and_stone_ewavmt&autoplay=true&muted=true&loop=true&controls=false"
-    allow="autoplay; fullscreen"
-    allowfullscreen
-  ></iframe>
-</div>
 
-<style>
-.video-wrapper {
-  width: 100%;
-  height: 420px;    /* visible height */
-  margin-bottom: 40px;
-}
-
-.video-wrapper iframe {
-  width: 100%;
-  height: 100%;     /* fill the parent height */
-  border: none;
-  pointer-events: none; /* disables clicks */
-}
-</style>
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const iframe = document.getElementById("cloudinaryVideo");
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          iframe.src = iframe.src; // autoplay when visible
-        }
-      });
-    },
-    { threshold: 0.5 }
-  );
-
-  observer.observe(iframe);
-});
 </script>
 
   <!-- UPDATES PANEL -->
@@ -146,6 +105,48 @@ document.addEventListener("DOMContentLoaded", function () {
 
   </div>
 </div>
+<div class="video-wrapper">
+  <iframe
+    id="cloudinaryVideo"
+    src="https://player.cloudinary.com/embed/?cloud_name=dm6k0etap&public_id=Firefly_A_dramatic_cinematic_logo_reveal_with_no_people_no_products_only_space_earth_and_stone_ewavmt&autoplay=true&muted=true&loop=true&controls=false"
+    allow="autoplay; fullscreen"
+    allowfullscreen
+  ></iframe>
+</div>
+
+<style>
+.video-wrapper {
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+}
+
+.video-wrapper iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+
+  /* Prevent ALL clicking / touching */
+  pointer-events: none;
+}
+</style>
+
+<script>
+const iframe = document.getElementById("cloudinaryVideo");
+
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        iframe.src = iframe.src; // play when visible
+      }
+    });
+  },
+  { threshold: 0.5 }
+);
+
+observer.observe(iframe);
+</script>
 
   <!-- Navigation -->
   <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm">
