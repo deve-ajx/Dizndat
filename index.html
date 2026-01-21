@@ -74,38 +74,7 @@
   </style>
 </head>
 <body class="font-sans bg-light text-dark">
-
-</script>
-
-  <!-- UPDATES PANEL -->
-<div id="updatesPanel"
-     class="hidden fixed top-8 right-3 bg-gray rounded-xl shadow-x1 p-12 z-50 w-60">
-
-  <div class="grid grid-cols-2 gap-4 text-center">
-
-    <div onclick="openModal('products')" class="cursor-pointer hover:scale-105 transition">
-      <i class="fas fa-shopping-bag text-3xl text-pink-500"></i>
-      <p class="text-xs mt-1">diz&dat</p>
-    </div>
-
-    <div onclick="openModal('customers')" class="cursor-pointer hover:scale-105 transition">
-      <i class="fas fa-heart text-3xl text-red-500"></i>
-      <p class="text-xs mt-1">Reviews</p>
-    </div>
-
-    <div onclick="openModal('offers')" class="cursor-pointer hover:scale-105 transition">
-      <i class="fas fa-clock text-3xl text-yellow-500"></i>
-      <p class="text-xs mt-1">Offers</p>
-    </div>
-
-    <div onclick="openModal('news')" class="cursor-pointer hover:scale-105 transition">
-      <i class="fas fa-newspaper text-3xl text-blue-500"></i>
-      <p class="text-xs mt-1">News</p>
-    </div>
-
-  </div>
-</div>
-<div class="video-wrapper">
+ <div class="video-wrapper">
   <iframe
     id="cloudinaryVideo"
     src="https://player.cloudinary.com/embed/?cloud_name=dm6k0etap&public_id=Firefly_A_dramatic_cinematic_logo_reveal_with_no_people_no_products_only_space_earth_and_stone_ewavmt&autoplay=true&muted=true&loop=true&controls=false"
@@ -147,6 +116,37 @@ const observer = new IntersectionObserver(
 
 observer.observe(iframe);
 </script>
+
+</script>
+
+  <!-- UPDATES PANEL -->
+<div id="updatesPanel"
+     class="hidden fixed top-8 right-3 bg-gray rounded-xl shadow-x1 p-12 z-50 w-60">
+
+  <div class="grid grid-cols-2 gap-4 text-center">
+
+    <div onclick="openModal('products')" class="cursor-pointer hover:scale-105 transition">
+      <i class="fas fa-shopping-bag text-3xl text-pink-500"></i>
+      <p class="text-xs mt-1">diz&dat</p>
+    </div>
+
+    <div onclick="openModal('customers')" class="cursor-pointer hover:scale-105 transition">
+      <i class="fas fa-heart text-3xl text-red-500"></i>
+      <p class="text-xs mt-1">Reviews</p>
+    </div>
+
+    <div onclick="openModal('offers')" class="cursor-pointer hover:scale-105 transition">
+      <i class="fas fa-clock text-3xl text-yellow-500"></i>
+      <p class="text-xs mt-1">Offers</p>
+    </div>
+
+    <div onclick="openModal('news')" class="cursor-pointer hover:scale-105 transition">
+      <i class="fas fa-newspaper text-3xl text-blue-500"></i>
+      <p class="text-xs mt-1">News</p>
+    </div>
+
+  </div>
+</div>
 
   <!-- Navigation -->
   <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm">
