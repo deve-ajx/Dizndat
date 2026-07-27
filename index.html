@@ -49,7 +49,7 @@
     }
   </script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
     
     .product-card:hover .product-actions {
       opacity: 1;
@@ -163,6 +163,23 @@
     .reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s ease, transform .65s ease; }
     .reveal.is-visible { opacity: 1; transform: translateY(0); }
     @media (max-width: 640px) { .luxury-hero .hero-copy { transform: translateY(-5rem); } .hero-stats { gap: .1rem; padding: .65rem .3rem; } .hero-stat { padding-inline: .25rem; font-size: .58rem; } .hero-stat strong { font-size: 1.13rem; } .hero-bottom { bottom: 1rem; gap: .8rem; } .founder-card { padding: 1.25rem; } }
+    /* Dior-inspired premium navigation and iPhone-first refinements */
+    :root { --lux-green:#1B4332; --lux-gold:#D4AF37; --lux-bg:#FAF8F4; --lux-text:#111111; }
+    body { font-family:'DM Sans',sans-serif !important; background:var(--lux-bg) !important; color:var(--lux-text) !important; }
+    .font-serif, h1, h2, h3 { font-family:'Playfair Display',serif !important; }
+    nav { position:fixed !important; top:14px; left:50%; width:min(calc(100% - 28px),1180px); border:1px solid rgba(255,255,255,.5) !important; border-radius:20px; background:rgba(250,248,244,.72) !important; box-shadow:0 10px 28px rgba(20,32,24,.08); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); transform:translateX(-50%); transition:transform .28s ease,box-shadow .28s ease,backdrop-filter .28s ease; }
+    nav.nav-hidden { transform:translate(-50%,-130%); } nav.nav-elevated { box-shadow:0 16px 38px rgba(20,32,24,.16); backdrop-filter:blur(25px); -webkit-backdrop-filter:blur(25px); }
+    nav .max-w-7xl { max-width:none; } nav .h-20 { height:72px; } nav .font-serif { font-size:1.65rem; letter-spacing:-.06em; }
+    .menu-trigger { border-radius:50%; border-color:rgba(27,67,50,.18); }.menu-trigger svg { transition:transform .25s ease; }.menu-trigger.is-active svg { transform:rotate(90deg); }
+    .luxury-hero { min-height:100svh !important; background:linear-gradient(115deg,rgba(8,17,12,.88),rgba(27,67,50,.62)),url('https://i.postimg.cc/28kNN5xX/IMG-1390.jpg') center/cover !important; }
+    .luxury-hero > .absolute { display:none; }.luxury-hero .hero-copy { width:min(820px,100%); text-align:left; transform:translateY(-2.5rem); }.luxury-hero h1 { max-width:740px; font-size:clamp(3.5rem,8vw,7.4rem); line-height:.96; }.luxury-word { color:var(--lux-gold); font-style:italic; }.gold-divider { width:78px; height:1px; margin:25px 0; background:var(--lux-gold); }
+    .luxury-hero .hero-copy p { max-width:500px; font-size:1.08rem; }.hero-bottom { justify-items:start; width:min(100% - 2.5rem,1120px); }.hero-actions { display:flex; flex-direction:row !important; align-items:center; }.hero-shop-button,.luxury-secondary { min-height:52px; padding:.8rem 1.45rem !important; border-radius:999px !important; font-family:'DM Sans',sans-serif; font-size:.75rem; letter-spacing:.12em; text-transform:uppercase; transition:transform .2s ease,box-shadow .2s ease,background .2s ease; }.hero-shop-button { color:#fff !important; background:var(--lux-green) !important; box-shadow:0 10px 25px rgba(0,0,0,.18); }.luxury-secondary { display:inline-flex; align-items:center; justify-content:center; color:#fff; border:1px solid var(--lux-gold); background:transparent; }.hero-shop-button:hover,.luxury-secondary:hover { transform:translateY(-3px); box-shadow:0 14px 28px rgba(0,0,0,.22); }
+    .hero-stats { max-width:860px; grid-template-columns:repeat(4,1fr); padding:1rem; border-color:rgba(212,175,55,.4); background:rgba(14,29,21,.42); }.hero-stat { display:flex; align-items:center; justify-content:center; gap:.55rem; padding:.45rem .8rem; text-align:left; }.hero-stat i { color:var(--lux-gold); font-size:1rem; }.hero-stat strong { font-family:'DM Sans',sans-serif; font-size:.72rem; letter-spacing:.04em; }.hero-stat span { display:block; font-size:.6rem; }
+    section { padding-block:clamp(4.5rem,9vw,8rem) !important; }.product-card { border-radius:18px !important; background:#fff !important; }.product-card:hover { transform:translateY(-7px); }.product-card .product-actions button { border-radius:999px !important; }
+    .admin-panel input,.admin-panel textarea,#newsletterForm input { font-size:16px !important; }
+    .cards-popup { display:none; position:fixed; z-index:90; inset:0; padding:20px; place-items:center; background:rgba(7,13,9,.68); backdrop-filter:blur(12px); }.cards-popup.open { display:grid; }.cards-popup-panel { position:relative; width:min(1040px,100%); max-height:88vh; overflow:auto; padding:clamp(1.25rem,4vw,2.5rem); border:1px solid rgba(255,255,255,.35); border-radius:24px; background:#FAF8F4; box-shadow:0 32px 80px rgba(0,0,0,.35); animation:popup-in .28s ease; }.cards-popup-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:18px; margin-top:22px; }.cards-popup-grid .product-card { transform:none !important; }.cards-popup-close { position:absolute; top:15px; right:18px; border:0; color:var(--lux-green); background:transparent; font-size:30px; cursor:pointer; } @keyframes popup-in { from { opacity:0; transform:scale(.94) translateY(12px); } to { opacity:1; transform:scale(1) translateY(0); } }
+    .scroll-cue { position:absolute; bottom:22px; left:50%; z-index:12; color:#fff; font-size:.63rem; letter-spacing:.22em; transform:translateX(-50%); text-transform:uppercase; animation:scroll-float 2.4s ease-in-out infinite; } @keyframes scroll-float { 50% { transform:translate(-50%,7px); opacity:.65; } }
+    @media(max-width:640px){ nav { top:8px; width:calc(100% - 16px); border-radius:16px; } nav .h-20 { height:64px; } .luxury-hero .hero-copy { transform:translateY(-4rem); }.luxury-hero h1 { font-size:clamp(3.1rem,16vw,4.7rem); }.hero-bottom { bottom:1.4rem; }.hero-actions { flex-wrap:wrap; }.hero-stats { grid-template-columns:repeat(2,1fr); width:100%; }.hero-stat:nth-child(3) { border-left:0; }.hero-stat { justify-content:flex-start; }.cards-popup { padding:10px; }.cards-popup-panel { max-height:92vh; border-radius:20px; }.cards-popup-grid { grid-template-columns:1fr 1fr; gap:12px; } }
   </style>
 </head>
 <body class="font-sans bg-light text-dark">
@@ -199,7 +216,7 @@
     </div>
     <div id="mobileMenu" class="px-6 py-5 space-y-3 text-sm font-medium" aria-hidden="true">
       <a href="#" class="block">Home</a>
-      <a href="#products" class="block">Products</a>
+      <button id="ourCardsButton" class="block w-full text-left" type="button">Our Cards</button>
       <a href="#about" class="block">About</a>
       <a href="#contact" class="block">Contact</a>
       <button id="cartMenuButton" class="flex w-full items-center justify-between border-t border-stone-200 pt-4 text-left text-primary" type="button">
@@ -223,8 +240,8 @@
     </div>
     
     <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
-      <h1 class="text-5xl md:text-7xl font-serif font-bold text-white mb-6 animate-fade-in">Elevate Your Style</h1>
-      <p class="text-xl md:text-2xl text-white/90 mb-8">Discover premium Jallabiyas, exquisite perfumes, stylish caps & comfortable shoes</p>
+      <h1 class="text-5xl md:text-7xl font-serif font-bold text-white mb-2 animate-fade-in">Elevate Your <span class="luxury-word">Style</span></h1><div class="gold-divider"></div>
+      <p class="text-xl md:text-2xl text-white/90 mb-8">Discover premium Jallabiyas, exquisite perfumes, stylish caps & comfortable shoes.</p>
     </div>
     <div class="hero-bottom">
       <div class="hero-actions flex flex-col sm:flex-row justify-center gap-4">
@@ -233,13 +250,16 @@
    target="_blank" rel="noopener" aria-label="Shop Diz&Dat" title="Shop Diz&Dat">
   <i class="fas fa-shopping-bag text-base"></i><span>Shop Now</span>
         </a>
+        <a href="#products" class="luxury-secondary">Explore collection</a>
       </div>
       <div class="hero-stats" aria-label="Diz and Dat service highlights">
-        <div class="hero-stat"><strong>400+</strong><span>Satisfied Customers</span></div>
-        <div class="hero-stat"><strong>100%</strong><span>Premium Quality</span></div>
-        <div class="hero-stat"><strong>Nationwide</strong><span>Delivery Available</span></div>
+        <div class="hero-stat"><i class="fas fa-users"></i><div><strong>400+</strong><span>Satisfied Customers</span></div></div>
+        <div class="hero-stat"><i class="fas fa-shield-halved"></i><div><strong>100%</strong><span>Premium Quality</span></div></div>
+        <div class="hero-stat"><i class="fas fa-truck"></i><div><strong>Nationwide</strong><span>Delivery</span></div></div>
+        <div class="hero-stat"><i class="fas fa-headset"></i><div><strong>24/7</strong><span>Customer Support</span></div></div>
       </div>
     </div>
+    <span class="scroll-cue">Scroll to discover</span>
     
     <div class="hidden" aria-hidden="true">
       <a href="#products" class="text-white hover:text-accent transition">
@@ -269,7 +289,7 @@
             <div class="absolute inset-0 bg-gradient-to-t from-dark/70 to-transparent"></div>
             <div class="product-actions absolute bottom-0 left-0 right-0 p-4 opacity-0 transform translate-y-4 transition-all duration-300">
               <div class="flex justify-between items-center">
-                <span class="text-xl font-bold text-white">â‚¦12,000</span>
+                <span class="text-xl font-bold text-white">12,000</span>
                 <button class="bg-accent text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-primary transition">
                   Add to Cart
                 </button>
@@ -290,7 +310,7 @@
             <div class="absolute inset-0 bg-gradient-to-t from-dark/70 to-transparent"></div>
             <div class="product-actions absolute bottom-0 left-0 right-0 p-4 opacity-0 transform translate-y-4 transition-all duration-300">
               <div class="flex justify-between items-center">
-                <span class="text-xl font-bold text-white">â‚¦3,000-â‚¦5,000</span>
+                <span class="text-xl font-bold text-white">3,000 to 5,000</span>
                 <button class="bg-accent text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-primary transition">
                   Add to Cart
                 </button>
@@ -310,7 +330,7 @@
             <div class="absolute inset-0 bg-gradient-to-t from-dark/70 to-transparent"></div>
             <div class="product-actions absolute bottom-0 left-0 right-0 p-4 opacity-0 transform translate-y-4 transition-all duration-300">
               <div class="flex justify-between items-center">
-                <span class="text-xl font-bold text-white">â‚¦4,000</span>
+                <span class="text-xl font-bold text-white">4,000</span>
                 <button class="bg-accent text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-primary transition">
                   Add to Cart
                 </button>
@@ -330,7 +350,7 @@
             <div class="absolute inset-0 bg-gradient-to-t from-dark/70 to-transparent"></div>
             <div class="product-actions absolute bottom-0 left-0 right-0 p-4 opacity-0 transform translate-y-4 transition-all duration-300">
               <div class="flex justify-between items-center">
-                <span class="text-xl font-bold text-white">â‚¦9,000</span>
+                <span class="text-xl font-bold text-white">9,000</span>
                 <button class="bg-accent text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-primary transition">
                   Add to Cart
                 </button>
@@ -470,33 +490,6 @@
        class="swap-image"
        alt="Collection image 3">
 </div>
-
-  <!-- CEO Section -->
-  <section class="founder-section py-24">
-    <div class="relative z-10 max-w-6xl mx-auto px-6">
-      <div class="text-center reveal">
-        <span class="text-sm font-medium text-accent uppercase tracking-wider">Leadership</span>
-        <h2 class="mt-2 text-4xl md:text-5xl font-serif font-bold text-white">Meet Our Founder</h2>
-        <div class="mt-5 h-px w-24 bg-accent mx-auto"></div>
-      </div>
-      <div class="founder-card reveal max-w-5xl mx-auto mt-12">
-        <div class="grid md:grid-cols-[minmax(190px,290px)_1fr] items-center gap-8 md:gap-12">
-          <div class="founder-portrait max-w-[290px] mx-auto w-full">
-            <img src="https://i.postimg.cc/c4t6sVn5/Screenshot-59.png" alt="Abduooll, Founder and Creative Director of Diz&Dat" draggable="false">
-          </div>
-          <div class="text-center md:text-left">
-            <p class="text-xs uppercase tracking-[.22em] text-accent font-semibold">Founder & Creative Director</p>
-            <h3 class="mt-2 text-3xl md:text-4xl font-serif font-bold text-white">Abduooll</h3>
-            <p class="founder-quote mt-7 text-left">At Diz&Dat, fashion is more than clothing—it is the confidence to express your individuality with intention.</p>
-            <div class="mt-8 flex justify-center md:justify-start gap-3">
-              <a href="https://www.instagram.com/diz_and_dat_by_abduooll" target="_blank" rel="noopener" class="founder-social" aria-label="Follow Abduooll on Instagram"><i class="fab fa-instagram text-lg"></i></a>
-              <a href="https://wa.me/2347066867217" target="_blank" rel="noopener" class="founder-social" aria-label="Contact Diz and Dat on WhatsApp"><i class="fab fa-whatsapp text-lg"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- Testimonials -->
   <section class="py-20 bg-gray-50" id="testimonials">
@@ -673,6 +666,8 @@
     </div>
   </footer>
 
+  <div class="cards-popup" id="cardsPopup" aria-hidden="true"><div class="cards-popup-panel"><button class="cards-popup-close" type="button" aria-label="Close cards">&times;</button><p class="section-kicker">DIZ&amp;DAT EDIT</p><h2 class="text-3xl font-serif text-dark">Our Cards</h2><div class="cards-popup-grid" id="cardsPopupGrid"></div></div></div>
+
   <!-- Back to Top Button -->
   <button id="backToTop" class="fixed bottom-8 right-8 bg-primary text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-secondary">
     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -737,6 +732,46 @@
     }), { threshold: .14 });
     revealElements.forEach(element => revealObserver.observe(element));
   </script>
+  <script>
+    (() => {
+      const nav = document.querySelector('nav');
+      let previousY = window.scrollY;
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          const currentY = window.scrollY;
+          const pastTop = currentY > 24;
+          nav.classList.toggle('nav-elevated', pastTop);
+          nav.classList.toggle('nav-hidden', currentY > previousY && currentY > 150);
+          previousY = currentY;
+          ticking = false;
+        });
+      }, { passive:true });
+
+      const popup = document.getElementById('cardsPopup');
+      const openCards = () => {
+        const grid = document.getElementById('cardsPopupGrid');
+        if (!grid.childElementCount) {
+          document.querySelectorAll('#products .product-card').forEach(card => {
+            const clone = card.cloneNode(true);
+            clone.querySelectorAll('button').forEach(button => button.addEventListener('click', () => {
+              const original = [...document.querySelectorAll('#products .product-card')].find(item => item.querySelector('h3')?.textContent === clone.querySelector('h3')?.textContent);
+              original?.querySelector('button')?.click();
+            }));
+            grid.appendChild(clone);
+          });
+        }
+        popup.classList.add('open'); popup.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
+      };
+      const closeCards = () => { popup.classList.remove('open'); popup.setAttribute('aria-hidden','true'); document.body.style.overflow=''; };
+      document.getElementById('ourCardsButton').addEventListener('click', () => { mobileMenu.classList.remove('is-open'); openCards(); });
+      popup.querySelector('.cards-popup-close').addEventListener('click', closeCards);
+      popup.addEventListener('click', event => { if (event.target === popup) closeCards(); });
+      document.addEventListener('keydown', event => { if (event.key === 'Escape') closeCards(); });
+    })();
+  </script>
   <!--Start of Tawk.to Script-->
 <script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
@@ -767,7 +802,7 @@ s0.parentNode.insertBefore(s1,s0);
 <!-- MODAL BACKDROP -->
 <div id="modalBackdrop" class="fixed inset-0 bg-black bg-opacity-50 hidden justify-center items-start pt-20 z-50 overflow-auto">
   <div class="bg-gray-50 rounded-xl max-w-3xl w-11/12 p-6 relative">
-    <button class="absolute top-3 right-3 text-gray-600 text-2xl font-bold hover:text-gray-900" onclick="closeModal()">âœ•</button>
+    <button class="absolute top-3 right-3 text-gray-600 text-2xl font-bold hover:text-gray-900" onclick="closeModal()">back</button>
     <div id="modalContent" class="space-y-4"></div>
   </div>
 </div>
@@ -844,4 +879,3 @@ s0.parentNode.insertBefore(s1,s0);
     }
   </script>
 </body>
-</html>
