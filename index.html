@@ -445,7 +445,7 @@ c.querySelectorAll('[data-m]').forEach(s=>s.onchange=()=>{ins.map[s.dataset.m]=+
 $('#rq')&&($('#rq').onclick=requestPro);
 $('#ex')&&($('#ex').onclick=()=>{const R=ins.R,q=v=>`"${String(v).replace(/"/g,'""')}"`,out=[['sVn Business report'],['Revenue',R.s.rev],['Orders/records',R.s.orders],['Units',R.s.units??''],['Avg order value',Math.round(R.s.aov)],[],['Product','Revenue','Units'],...R.pe.map(p=>[p[0],p[1].rev,p[1].q]),[],['Summary'],...R.sum.map(t=>[t])].map(r=>r.map(q).join(',')).join('\n'),a=document.createElement('a');a.href=URL.createObjectURL(new Blob([out],{type:'text/csv'}));a.download='svn-report.csv';a.click();URL.revokeObjectURL(a.href)});
 $('#wk')&&($('#wk').onclick=async()=>{try{const R=ins.R;await addDoc(col('weeklyReports'),{weekEnding:R.max?dk(R.max):'',revenue:R.s.rev,orders:R.s.orders,topProduct:R.pe[0]?.[0]||'',weakProducts:R.pe.length>=6?R.pe.slice(-3).map(p=>p[0]):[],summary:R.sum,source:'upload',createdAt:ts()});toast('Weekly report saved.')}catch(er){toast(er.code==='permission-denied'?'Pro access is required, or rules are not published yet.':'Could not save report.')}})}
-/* ---------- workspace (replaces the Insights tab; Insights stays reachable from Home and the Workspace banner) ---------- */
+/* --------- workspace (replaces the Insights tab; Insights stays reachable from Home and the Workspace banner) ---------- */
 const LIM={customerNotes:10,plans:5,quickNotes:20},WSN={customerNotes:'Customer notes',plans:'Business plans',quickNotes:'Quick notes'};
 let wsTab='customerNotes',wsQ='';
 const planPct=p=>{const t=p.tasks||[];return t.length?Math.round(t.filter(x=>x.d).length/t.length*100):0};
