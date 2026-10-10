@@ -446,6 +446,73 @@ html[data-xp=pro].g1h #bnav .nv.on[data-p=me] b.ico .av{box-shadow:0 0 0 2px #7c
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){html[data-xp=pro] .g1hero{background:linear-gradient(150deg,#6a80ec,#4352c4 55%,#7468e8)}html[data-xp=pro].g1h #bnav{background:rgba(238,240,255,.96)}html[data-xp=pro].g1h header.scrolled{background:rgba(10,18,64,.96)}}
 @media(prefers-reduced-transparency:reduce){html[data-xp=pro] .g1hero{-webkit-backdrop-filter:none;backdrop-filter:none;background:linear-gradient(150deg,#6a80ec,#4352c4 55%,#7468e8)}html[data-xp=pro].g1h #bnav{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(238,240,255,.97)}}
 @media(prefers-reduced-motion:reduce){html[data-xp=pro] .g1sheen::after,html[data-xp=pro].g1h #bnav::after,html[data-xp=pro].g1h #hpro .bdg.pro::after{transition:none;transform:translate3d(calc(.3*53.8%),0,0)!important;will-change:auto}}
+/* v18: Pro 1 glass style extended to Sales, Workspace, Business, Profile. Scoped to html[data-xp=pro]; g1h = shared glass shell (5 pages), g1n = the four sub-pages. */
+/* ---- sub-page atmosphere (a little deeper than Home so loose white headings stay readable at any scroll position) ---- */
+html[data-xp=pro].g1n body::before{background:radial-gradient(520px 340px at 88% 3%,rgba(130,110,255,.38),transparent 70%),radial-gradient(560px 420px at 4% 55%,rgba(90,140,255,.3),transparent 70%),radial-gradient(700px 500px at 80% 105%,rgba(150,130,240,.55),transparent 68%),linear-gradient(180deg,#050816 0%,#0a1240 22%,#16256f 52%,#2c3d9c 80%,#4a4fb8 100%)}
+html[data-xp=pro].g1n header h1::after{content:none}
+html[data-xp=pro].g1n .pg{max-width:980px;width:100%;margin:0 auto;gap:14px;padding-top:6px;padding-bottom:calc(122px + env(safe-area-inset-bottom,0px))}
+/* text colours: loose text sits on the dark gradient (light ink); every surface re-scopes to dark ink */
+html[data-xp=pro].g1n #content{--ink:#f2f4ff;--muted:#b6c0ee;--line:rgba(170,185,255,.24)}
+html[data-xp=pro].g1n #content :is(.card,.tool,.hrow,.refrow,.lock){--ink:#141a45;--muted:#586189;--line:rgba(80,90,180,.16);--solid:#fff;--acc:#5b4be0;--acc2:#7c6cff;--glass:rgba(255,255,255,.84);color:var(--ink)}
+/* surfaces */
+html[data-xp=pro].g1n .card{background:var(--g1l);border:1px solid rgba(255,255,255,.78);border-radius:24px;box-shadow:0 14px 30px -18px rgba(10,15,90,.6),inset 0 1px 0 #fff;-webkit-backdrop-filter:none;backdrop-filter:none}
+html[data-xp=pro].g1n .card.tw{padding:8px 10px}
+html[data-xp=pro].g1n .tool,html[data-xp=pro].g1n .hrow,html[data-xp=pro].g1n .refrow{background:linear-gradient(160deg,rgba(255,255,255,.92),rgba(255,255,255,.72));border:1px solid rgba(255,255,255,.78);border-radius:22px;box-shadow:0 12px 26px -16px rgba(10,15,90,.6),inset 0 1px 0 #fff;-webkit-backdrop-filter:none;backdrop-filter:none}
+html[data-xp=pro].g1n .card .hrow,html[data-xp=pro].g1n .card .refrow{background:rgba(255,255,255,.62);box-shadow:none;border:1px solid rgba(80,90,180,.12);border-radius:18px}
+html[data-xp=pro].g1n .tool{padding:14px;transition:transform .15s ease}html[data-xp=pro].g1n .tool:active,html[data-xp=pro].g1n .hrow:active,html[data-xp=pro].g1n .refrow:active{transform:scale(.985)}
+html[data-xp=pro].g1n .tool small,html[data-xp=pro].g1n .hrow small,html[data-xp=pro].g1n .refrow small{color:var(--muted)}
+html[data-xp=pro].g1n .tool svg,html[data-xp=pro].g1n .hrow>svg,html[data-xp=pro].g1n .refrow>svg{color:#7b83ad}
+html[data-xp=pro].g1n .card h2,html[data-xp=pro].g1n .tool b,html[data-xp=pro].g1n .hrow b,html[data-xp=pro].g1n .refrow b{color:var(--ink)}
+html[data-xp=pro].g1n .card .mut{color:var(--muted)}
+/* icon tiles */
+html[data-xp=pro].g1n .hi,html[data-xp=pro].g1n .refic{background:rgba(139,108,255,.16);color:#6a4be8;box-shadow:inset 0 1px 0 rgba(255,255,255,.6)}
+html[data-xp=pro].g1n .ti2{width:46px;height:46px;border-radius:15px;box-shadow:0 8px 18px -6px rgba(60,60,200,.55),inset 0 1px 0 rgba(255,255,255,.4)}
+html[data-xp=pro].g1n .ti2:not([class*=" n-"]){background:linear-gradient(145deg,#8b6cff,#5a3be0)}
+html[data-xp=pro].g1n #t2 .ti2{background:linear-gradient(145deg,#6aa8ff,#3b78f0)}
+html[data-xp=pro].g1n .ti2 svg{color:#fff}
+/* headings and title rows (loose on the gradient) */
+html[data-xp=pro].g1n .sec2{font-size:calc(17px*var(--ts,1));font-weight:700;color:#fff;padding:2px 4px 0;text-shadow:0 1px 10px rgba(5,8,40,.55)}
+html[data-xp=pro].g1n .pg>.rw{padding:12px 14px;border:1px solid rgba(255,255,255,.3)!important;border-radius:22px;background:linear-gradient(150deg,rgba(104,128,238,.6),rgba(66,82,196,.55) 60%,rgba(122,108,232,.5));box-shadow:0 16px 34px -18px rgba(20,30,150,.7),inset 0 1px 0 rgba(255,255,255,.4);-webkit-backdrop-filter:blur(14px) saturate(150%);backdrop-filter:blur(14px) saturate(150%);color:#fff;--g1sa:rgba(255,255,255,.2);--g1sb:rgba(214,200,255,.16)}
+html[data-xp=pro].g1n .pg>.rw h2{font-size:calc(20px*var(--ts,1));font-weight:800;letter-spacing:-.01em;color:#fff}
+/* tables, status pills, row actions, empty states */
+html[data-xp=pro].g1n table{border-collapse:separate;border-spacing:0}
+html[data-xp=pro].g1n th{color:var(--muted);font-weight:700;letter-spacing:.04em;border-bottom:1px solid var(--line)}
+html[data-xp=pro].g1n td{border-bottom:1px solid var(--line);color:var(--ink)}
+html[data-xp=pro].g1n tbody tr:last-child td{border-bottom:0}
+html[data-xp=pro].g1n td[colspan]{text-align:center;white-space:normal;padding:30px 12px;color:var(--muted)}
+html[data-xp=pro].g1n .bdg{background:rgba(124,108,255,.15);color:#5b4be0;border:1px solid rgba(124,108,255,.22)}
+html[data-xp=pro].g1n .bdg.pro{background:linear-gradient(135deg,#7b86ff,#6a3df0);color:#fff;border:1px solid rgba(255,255,255,.35);box-shadow:0 4px 14px rgba(100,80,240,.4)}
+html[data-xp=pro].g1n .lnk{color:#5b4be0;font-weight:700}
+html[data-xp=pro].g1n .xp{color:#7b83ad}
+html[data-xp=pro].g1n .oex td{background:rgba(124,108,255,.07)}
+html[data-xp=pro].g1n .bad{color:#e0455d}
+/* profile */
+html[data-xp=pro].g1n .avp .av{border:2px solid rgba(255,255,255,.85);box-shadow:0 0 0 3px rgba(124,108,255,.5),0 10px 26px rgba(100,80,240,.45)}
+html[data-xp=pro].g1n .card .rows{gap:8px}
+html[data-xp=pro].g1n #st,html[data-xp=pro].g1n #lo{background:linear-gradient(160deg,rgba(255,255,255,.2),rgba(255,255,255,.08));border:1px solid rgba(190,200,255,.42);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 10px 24px -14px rgba(5,8,60,.7);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+html[data-xp=pro].g1n #lo{color:#ff9db0}
+/* controls shared by every glass page and its dialogs */
+html[data-xp=pro].g1h .pri{background:linear-gradient(135deg,#7a86ff,#6a3df0);border:1px solid rgba(255,255,255,.35);border-radius:16px;color:#fff;box-shadow:0 10px 24px rgba(100,80,240,.45),inset 0 1px 0 rgba(255,255,255,.3)}
+html[data-xp=pro].g1h .pri:active{transform:scale(.98)}
+html[data-xp=pro].g1h .sec{background:color-mix(in srgb,var(--ink) 8%,transparent);border:1px solid color-mix(in srgb,var(--ink) 22%,transparent);color:var(--ink);border-radius:16px}
+html[data-xp=pro].g1h .sec.bad{color:#e0455d}
+html[data-xp=pro].g1h .ch{background:color-mix(in srgb,var(--ink) 7%,transparent);border:1px solid color-mix(in srgb,var(--ink) 20%,transparent);color:var(--ink);font-weight:600}
+html[data-xp=pro].g1h .ch.on{background:linear-gradient(135deg,#7c8bff,#6d4df0);color:#fff;border-color:rgba(255,255,255,.3);box-shadow:0 6px 16px rgba(110,90,255,.45)}
+html[data-xp=pro].g1h input,html[data-xp=pro].g1h select,html[data-xp=pro].g1h textarea{background:color-mix(in srgb,var(--ink) 6%,transparent);border:1px solid color-mix(in srgb,var(--ink) 20%,transparent);color:var(--ink);border-radius:14px}
+html[data-xp=pro].g1h input:focus,html[data-xp=pro].g1h select:focus,html[data-xp=pro].g1h textarea:focus{border-color:#7c6cff;box-shadow:0 0 0 3px rgba(124,108,255,.3)}
+html[data-xp=pro].g1h button:focus-visible{outline:2px solid #8b7cff;outline-offset:2px}
+/* dialogs and full-screen tools opened from these pages: same navy glass */
+html[data-xp=pro].g1h #modal{background:rgba(5,8,34,.62);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+html[data-xp=pro].g1h .mc{background:linear-gradient(160deg,rgba(26,38,120,.95),rgba(12,18,70,.97));border:1px solid rgba(150,170,255,.32);border-radius:28px;box-shadow:0 30px 70px -20px rgba(3,6,40,.8),inset 0 1px 0 rgba(255,255,255,.14)}
+html[data-xp=pro].g1h #modal.full{background:#0a1240;-webkit-backdrop-filter:none;backdrop-filter:none}
+html[data-xp=pro].g1h #modal.full .mc{background:linear-gradient(180deg,#050816,#0a1240 38%,#16256f);border:0;border-radius:0;box-shadow:none}
+/* shine on a few selected surfaces (same band, same scroll-driven variable as Home; tables are skipped so they keep scrolling cleanly) */
+html[data-xp=pro].g1n .pg>.rw,html[data-xp=pro].g1n #t1,html[data-xp=pro].g1n #t2,html[data-xp=pro].g1n .pg>.card:first-child:not(.tw){position:relative;overflow:hidden;isolation:isolate}
+html[data-xp=pro].g1n #t1,html[data-xp=pro].g1n #t2,html[data-xp=pro].g1n .pg>.card:first-child:not(.tw){--g1sa:rgba(255,255,255,.85);--g1sb:rgba(170,160,255,.28)}
+html[data-xp=pro].g1n .pg>.rw::after,html[data-xp=pro].g1n #t1::after,html[data-xp=pro].g1n #t2::after,html[data-xp=pro].g1n .pg>.card:first-child:not(.tw)::after{content:"";position:absolute;top:-10%;bottom:-10%;left:-150%;width:260%;z-index:-1;pointer-events:none;background:linear-gradient(104deg,transparent 0,transparent 41%,var(--g1sa,rgba(255,255,255,.2)) 47%,var(--g1sb,rgba(196,181,255,.16)) 51%,transparent 58%,transparent 100%);transform:translate3d(calc((var(--g1s,.35) + var(--g1o,0))*53.8%),0,0);will-change:transform;transition:transform .28s ease-out}
+html[data-xp=pro].g1n #t2::after{--g1o:.15}
+@media(prefers-reduced-motion:reduce){html[data-xp=pro].g1n .pg>.rw::after,html[data-xp=pro].g1n #t1::after,html[data-xp=pro].g1n #t2::after,html[data-xp=pro].g1n .pg>.card:first-child:not(.tw)::after{transition:none;transform:translate3d(calc(.3*53.8%),0,0)!important;will-change:auto}}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){html[data-xp=pro].g1n .pg>.rw{background:linear-gradient(150deg,#6a80ec,#4352c4)}html[data-xp=pro].g1h .mc{background:#101a62}}
 </style></head><body>
 <div id="splash"><img id="spl" alt=""></div><div id="toast"></div><main id="auth" hidden></main>
 <div id="app" hidden><aside id="side"></aside><section><header><div class="hl"><img class="hlg" id="hlg" alt="sVn Business"><div><p class="ey" id="kick"></p><h1 id="ttl"></h1></div></div><div class="who"><span id="sync" class="sync"></span><span id="uname" class="mut"></span><span id="hpro"></span><button class="ib" id="bell" aria-label="Notifications"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9a6 6 0 0 1 12 0c0 6 2 7 2 7H4s2-1 2-7M10 20a2 2 0 0 0 4 0"/></svg></button><span id="hav"></span></div></header><div id="content"></div></section><nav id="bnav"></nav></div>
@@ -512,7 +579,7 @@ $('#side').innerHTML=`<div class="brand"><img src="${LOGO}" alt="">sVn Business<
 $('#bnav').innerHTML=items.map(i=>`<button class="nv" data-p="${i[0]}"><b class="ico">${xp2On()&&i[0]==='me'?avatar(30):(xp2On()&&NI2[i[0]])||(i[0]==='me'&&p1av())||NI[i[0]]||''}</b>${i[1]}</button>`).join('');
 document.querySelectorAll('.nv').forEach(b=>b.onclick=()=>{page=b.dataset.p;document.dispatchEvent(new Event('svn:show-header'));window.scrollTo(0,0);render()})}
 const TT={home:['OVERVIEW',''],sales:['SALES & DELIVERY','Sales'],insights:['BUSINESS INTELLIGENCE','Insights'],workspace:['YOUR WORKSPACE','Workspace'],biz:['YOUR BUSINESS','Business'],me:['ACCOUNT','Profile'],admin:['STAFF','Staff dashboard']};
-function render(){if(!me)return;document.documentElement.classList.toggle('g1h',page==='home'&&xpOn());document.querySelectorAll('.nv').forEach(b=>b.classList.toggle('on',b.dataset.p===page));const h=new Date().getHours();$('#kick').textContent=page==='home'?'Your Business, Simplified':TT[page][0];$('#ttl').textContent=page==='home'?'sVn Business':TT[page][1];({home:c=>xp2On()?homePro2(c):xpOn()?homePro(c):home(c),sales,insights,workspace,biz,me:profileView,admin})[page]($('#content'));p2post()}
+function render(){if(!me)return;{const de=document.documentElement,on=xpOn()&&['home','sales','workspace','biz','me'].includes(page);de.classList.toggle('g1h',on);de.classList.toggle('g1n',on&&page!=='home')}document.querySelectorAll('.nv').forEach(b=>b.classList.toggle('on',b.dataset.p===page));const h=new Date().getHours();$('#kick').textContent=page==='home'?'Your Business, Simplified':TT[page][0];$('#ttl').textContent=page==='home'?'sVn Business':TT[page][1];({home:c=>xp2On()?homePro2(c):xpOn()?homePro(c):home(c),sales,insights,workspace,biz,me:profileView,admin})[page]($('#content'));p2post()}
 /* ---------- helpers ---------- */
 const stat=o=>o==='PAID'?'PAID':'OWING';const pn=v=>v.replace(/\D/g,'').replace(/^0/,'234');const cp=v=>{let n=String(v||'').replace(/\D/g,'');if(n.startsWith('0'))n='234'+n.slice(1);return n.startsWith('234')?n:'234'+n};
 function formModal(t,fields,save,x={}){open(`<h2>${t}</h2><form id="fm" class="form">${fields.map(([n,l,ty='text',req=1,opts])=>ty==='select'?`<label>${l}<select name="${n}">${opts.map(o=>`<option ${x[n]==o?'selected':''}>${o}</option>`).join('')}</select></label>`:`<label>${l}<input name="${n}" type="${ty}" value="${esc(x[n]??'')}" ${req?'required':''}></label>`).join('')}<button class="pri">Save</button></form>`);$('#fm').onsubmit=async e=>{e.preventDefault();try{await save(Object.fromEntries(new FormData(e.target)));close();toast('Saved')}catch(er){toast(er.message||'Could not save')}}}
@@ -804,7 +871,7 @@ const refreshAv=()=>{const h=$('#hav');if(h)h.innerHTML=avatar();const n=documen
 /* Pro 1 only: profile picture for the nav (reuses avatar()/getAv(), so it is always the signed-in user's own picture), failed-image fallback, and the glass sheen scroll driver */
 const p1av=()=>{if(!xpOn())return'';const a=getAv();return a&&a.v&&(a.t==='img'||a.t==='emoji')?avatar(30):''};
 document.addEventListener('error',e=>{const i=e.target;if(i&&i.tagName==='IMG'&&xpOn()){const b=i.closest('#bnav [data-p=me] b.ico,#side [data-p=me] b.ico');if(b)b.innerHTML=NI.me}},true);
-const g1u=(()=>{const rm=matchMedia('(prefers-reduced-motion: reduce)');let q=0,last=-1,ge=null;const upd=()=>{q=0;const de=document.documentElement;if(rm.matches||!de.classList.contains('g1h'))return;const m=de.scrollHeight-innerHeight,s=m>8?Math.min(1,Math.max(0,scrollY/m)):.35,v=Math.round(s*400)/400,g=document.querySelector('.g1');if(v===last&&g===ge)return;last=v;ge=g;document.querySelectorAll('header,.g1,#bnav').forEach(e=>e.style.setProperty('--g1s',v))};addEventListener('scroll',()=>{if(!q)q=requestAnimationFrame(upd)},{passive:true});addEventListener('resize',()=>{last=-1;if(!q)q=requestAnimationFrame(upd)},{passive:true});return upd})();
+const g1u=(()=>{const rm=matchMedia('(prefers-reduced-motion: reduce)');let q=0,last=-1,ge=null;const upd=()=>{q=0;const de=document.documentElement;if(rm.matches||!de.classList.contains('g1h'))return;const m=de.scrollHeight-innerHeight,s=m>8?Math.min(1,Math.max(0,scrollY/m)):.35,v=Math.round(s*400)/400,g=document.querySelector('.g1');if(v===last&&g===ge)return;last=v;ge=g;document.querySelectorAll('header,#content,#bnav').forEach(e=>e.style.setProperty('--g1s',v))};addEventListener('scroll',()=>{if(!q)q=requestAnimationFrame(upd)},{passive:true});addEventListener('resize',()=>{last=-1;if(!q)q=requestAnimationFrame(upd)},{passive:true});return upd})();
 const xp2On=()=>document.documentElement.dataset.xp==='pro2',xpv=()=>document.documentElement.dataset.xp,ini=()=>(me.fullName||'S').trim().split(/\s+/).slice(0,2).map(w=>w[0]).join('').toUpperCase();
 const g2=(z=20)=>NI2.sales.replace('<svg ',`<svg style="width:${z}px;height:${z}px;flex:none" `);
 function p2post(){const c=$('#content'),pg=c.querySelector('.pg');if(xp2On()){$('#kick').textContent='';$('#ttl').textContent='sVn business';if(pg&&page!=='home'&&!pg.querySelector('.p2t')){const t=TT[page]&&TT[page][1];if(t)pg.insertAdjacentHTML('afterbegin',`<h1 class="p2t">${t}</h1>`)}}
