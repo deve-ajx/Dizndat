@@ -341,7 +341,7 @@ html[data-xp=pro] #bnav .nv.on b.ico .av{box-shadow:0 0 0 2px rgba(167,139,250,.
 html[data-xp=pro] .g1sheen{position:relative;overflow:hidden;isolation:isolate}
 html[data-xp=pro] .g1sheen::after,html[data-xp=pro].g1h #bnav::after,html[data-xp=pro].g1h #hpro .bdg.pro::after{content:"";position:absolute;top:-10%;bottom:-10%;left:-150%;width:260%;z-index:-1;pointer-events:none;background:linear-gradient(104deg,transparent 0,transparent 41%,var(--g1sa,rgba(255,255,255,.2)) 47%,var(--g1sb,rgba(196,181,255,.16)) 51%,transparent 58%,transparent 100%);transform:translate3d(calc((var(--g1s,.35) + var(--g1o,0))*53.8%),0,0);will-change:transform;transition:transform .28s ease-out}
 html[data-xp=pro] .g1o1{--g1o:-.12}html[data-xp=pro] .g1o2{--g1o:.1}html[data-xp=pro] .g1o3{--g1o:.2}
-/* home page: background, header */ 
+/* home page: background, header */
 html[data-xp=pro].g1h{--g1i:#141a45;--g1m:#414a78;--g1l:rgba(255,255,255,.84)}
 html[data-xp=pro].g1h{background:#0a1240}
 html[data-xp=pro].g1h body{background:transparent}
@@ -535,6 +535,35 @@ html[data-xp=default] .gr2{gap:10px}html[data-xp=default] .gr2 .nm{font-size:cal
 /* v20: Staff user statistics (new classes only) */
 .ust{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.ust>div{padding:12px;border:1px solid var(--line);border-radius:14px;min-width:0}.ust b{display:block;font-size:calc(22px*var(--ts,1));line-height:1.2}.ust span{display:block;font-size:calc(12px*var(--ts,1));color:var(--muted);margin-top:2px}.ust small{display:block;font-size:calc(11px*var(--ts,1));margin-top:2px}
 @media(min-width:700px){.ust{grid-template-columns:repeat(4,minmax(0,1fr))}}
+/* v21: Pro 1 introduction overlay (new ids/classes only; exists in the page only while the intro plays) */
+#p1i{position:fixed;inset:0;z-index:400;display:grid;place-items:center;overflow:hidden;color:#fff;padding:env(safe-area-inset-top) 20px env(safe-area-inset-bottom);background:radial-gradient(520px 360px at 84% 8%,rgba(139,110,255,.45),transparent 70%),radial-gradient(560px 420px at 6% 82%,rgba(90,140,255,.35),transparent 70%),linear-gradient(180deg,#050816 0%,#0a1240 32%,#16256f 68%,#2c3d9c 100%);animation:p1in .6s ease both}
+#p1i.p1x{animation:p1out .7s ease forwards}
+@keyframes p1in{from{opacity:0}}@keyframes p1out{to{opacity:0;transform:scale(1.04)}}
+#p1i .p1c{display:grid;justify-items:center;gap:24px;text-align:center;animation:p1rise 1s cubic-bezier(.2,.8,.2,1) .1s both}
+@keyframes p1rise{from{opacity:0;transform:translateY(18px) scale(.96)}}
+#p1i .p1o{position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(120,100,240,.5),transparent 70%);animation:p1drift 9s ease-in-out infinite alternate}
+#p1i .p1o1{left:-90px;top:10%}#p1i .p1o2{right:-100px;bottom:6%;background:radial-gradient(circle,rgba(80,140,255,.42),transparent 70%);animation-delay:-4s}
+@keyframes p1drift{to{transform:translate3d(40px,-30px,0) scale(1.15)}}
+#p1i .p1h{position:relative;width:clamp(150px,38vw,210px);aspect-ratio:200/250;filter:drop-shadow(0 18px 38px rgba(110,90,255,.5))}
+#p1i .p1h::before{content:"";position:absolute;inset:-22%;border-radius:50%;background:radial-gradient(circle,rgba(160,140,255,.42),transparent 65%);animation:p1glow 3.2s ease-in-out infinite}
+@keyframes p1glow{50%{transform:scale(1.12);opacity:.7}}
+#p1i .p1h svg{position:relative;width:100%;height:100%;overflow:visible}
+#p1i .p1w{transform-origin:100px 224px;animation:p1wave 2.6s ease-in-out infinite}
+@keyframes p1wave{0%,80%,100%{transform:rotate(0)}8%{transform:rotate(-15deg)}20%{transform:rotate(15deg)}32%{transform:rotate(-12deg)}44%{transform:rotate(11deg)}56%{transform:rotate(-7deg)}68%{transform:rotate(5deg)}}
+#p1i .p1f{transform-box:fill-box;transform-origin:50% 100%;animation:p1fl 2.6s ease-in-out infinite;animation-delay:var(--d)}
+@keyframes p1fl{0%,80%,100%{transform:rotate(0)}14%{transform:rotate(-4deg)}26%{transform:rotate(4deg)}38%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+#p1i .p1a{opacity:0;animation:p1arc 2.6s ease-in-out infinite}
+#p1i .p1a2,#p1i .p1a4{animation-delay:.18s}#p1i .p1a3,#p1i .p1a4{animation-name:p1arc2}
+@keyframes p1arc{0%,6%{opacity:0}16%{opacity:.8}30%,100%{opacity:0}}@keyframes p1arc2{0%,18%{opacity:0}28%{opacity:.8}44%,100%{opacity:0}}
+#p1i .p1t{margin:0;font-size:clamp(20px,5.4vw,30px);font-weight:700;letter-spacing:-.01em;line-height:1.3;color:#fff;text-shadow:0 2px 18px rgba(120,100,255,.55);animation:p1tg 3.4s ease-in-out 2.4s infinite}
+@keyframes p1tg{50%{text-shadow:0 2px 26px rgba(185,170,255,.95)}}
+#p1i .w{display:inline-block;animation:p1word .9s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(.7s + var(--i)*.2s)}
+@keyframes p1word{from{opacity:0;transform:translateY(12px);filter:blur(6px)}}
+#p1i .p1e{display:inline-block;animation:p1dots 1.6s ease-in-out 2.2s infinite}@keyframes p1dots{50%{opacity:.35}}
+#p1i .p1b{width:min(260px,62vw);height:3px;border-radius:3px;background:rgba(255,255,255,.18);overflow:hidden}
+#p1i .p1b i{display:block;height:100%;border-radius:3px;background:linear-gradient(90deg,#8b7cff,#7fb0ff);box-shadow:0 0 12px rgba(139,124,255,.8);transform-origin:left;animation:p1bar 10s linear both}
+@keyframes p1bar{from{transform:scaleX(0)}}
+@media(prefers-reduced-motion:reduce){#p1i .p1b{display:none}#p1i .p1w,#p1i .p1f,#p1i .p1a,#p1i .p1o,#p1i .p1h::before{animation:none}}
 </style></head><body>
 <div id="splash"><img id="spl" alt=""></div><div id="toast"></div><main id="auth" hidden></main>
 <div id="app" hidden><aside id="side"></aside><section><header><div class="hl"><img class="hlg" id="hlg" alt="sVn Business"><div><p class="ey" id="kick"></p><h1 id="ttl"></h1></div></div><div class="who"><span id="sync" class="sync"></span><span id="uname" class="mut"></span><span id="hpro"></span><button class="ib" id="bell" aria-label="Notifications"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9a6 6 0 0 1 12 0c0 6 2 7 2 7H4s2-1 2-7M10 20a2 2 0 0 0 4 0"/></svg></button><span id="hav"></span></div></header><div id="content"></div></section><nav id="bnav"></nav></div>
@@ -855,7 +884,28 @@ $('#pf2').onsubmit=async e=>{e.preventDefault();if(await pinKey(new FormData(e.t
 /* ---------- Pro experience (separate look + its own Home) ---------- */
 const xpOn=()=>document.documentElement.dataset.xp==='pro';
 const applyXp=()=>{const u=auth.currentUser;document.documentElement.dataset.tier=u&&isPro()?'pro':'free';{const v=u?localStorage.getItem('svn_xp_'+u.uid):null;document.documentElement.dataset.xp=v==='pro2'||(v==='pro'&&isPro())?v:'default'};chrome()};
-function setXp(v){if(v==='pro'&&!isPro())return upgradeView();localStorage.setItem('svn_xp_'+auth.currentUser.uid,v);applyXp();shell();render()}
+/* Pro 1 introduction (10 s). It plays only when the user actually switches TO Pro 1 from another appearance. The switch itself is the
+   unchanged original setXp logic (now setXpNow), run once when the 10 seconds are over. xpIntro guards against repeats and overlaps. */
+let xpIntro=null;const P1_INTRO_MS=10000;
+const P1_HAND=`<svg viewBox="0 0 200 250" aria-hidden="true" focusable="false"><defs><linearGradient id="p1g" gradientUnits="userSpaceOnUse" x1="40" y1="20" x2="170" y2="236"><stop offset="0" stop-color="#ece8ff"/><stop offset=".5" stop-color="#b3a8ff"/><stop offset="1" stop-color="#6c5cea"/></linearGradient><linearGradient id="p1k" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#34429f"/><stop offset="1" stop-color="#141b66"/></linearGradient></defs>
+<path class="p1a p1a1" d="M26 78c-14 18-14 44 0 64" fill="none" stroke="#cfc6ff" stroke-width="3.5" stroke-linecap="round"/><path class="p1a p1a2" d="M16 66c-22 28-22 66 0 94" fill="none" stroke="#9fb4ff" stroke-width="3" stroke-linecap="round"/>
+<path class="p1a p1a3" d="M174 78c14 18 14 44 0 64" fill="none" stroke="#cfc6ff" stroke-width="3.5" stroke-linecap="round"/><path class="p1a p1a4" d="M184 66c22 28 22 66 0 94" fill="none" stroke="#9fb4ff" stroke-width="3" stroke-linecap="round"/>
+<g class="p1w"><g fill="url(#p1g)" stroke="rgba(255,255,255,.5)" stroke-width="1.4">
+<g transform="rotate(-42 60 178)"><rect x="36" y="112" width="25" height="90" rx="12.5"/></g>
+<g transform="rotate(-9 72 124)"><g class="p1f" style="--d:.0s"><rect x="60" y="36" width="25" height="96" rx="12.5"/></g></g>
+<g transform="rotate(-1 98 124)"><g class="p1f" style="--d:.12s"><rect x="87" y="20" width="25" height="112" rx="12.5"/></g></g>
+<g transform="rotate(7 124 126)"><g class="p1f" style="--d:.24s"><rect x="113" y="32" width="25" height="100" rx="12.5"/></g></g>
+<g transform="rotate(16 148 132)"><g class="p1f" style="--d:.36s"><rect x="138" y="66" width="23" height="72" rx="11.5"/></g></g></g>
+<path d="M54 134C54 112 74 104 100 104s48 8 48 30v38c0 32-22 52-48 52s-46-20-46-52z" fill="url(#p1g)"/><ellipse cx="84" cy="150" rx="22" ry="30" fill="#fff" opacity=".2"/>
+<rect x="60" y="216" width="80" height="32" rx="13" fill="url(#p1k)"/><rect x="60" y="228" width="80" height="3.5" fill="#8b7cff"/></g></svg>`;
+function proIntro(done){const el=document.createElement('div'),app=$('#app');el.id='p1i';el.setAttribute('role','status');el.setAttribute('aria-label','Turning your app to Pro 1');
+ el.innerHTML=`<i class="p1o p1o1"></i><i class="p1o p1o2"></i><div class="p1c"><div class="p1h">${P1_HAND}</div><p class="p1t" aria-hidden="true">${['Turning','your','app','to','Pro'].map((w,i)=>`<span class="w" style="--i:${i}">${w}</span>`).join(' ')} <span class="w" style="--i:5">1<span class="p1e">…</span></span></p><div class="p1b" aria-hidden="true"><i></i></div></div>`;
+ document.body.append(el);try{app.inert=true}catch{}try{document.activeElement&&document.activeElement.blur()}catch{}
+ const x=xpIntro={el,app,t:null,r:null};x.t=setTimeout(()=>{x.t=null;try{done()}finally{el.classList.add('p1x');x.r=setTimeout(proIntroEnd,750)}},P1_INTRO_MS)}
+function proIntroEnd(){const x=xpIntro;if(!x)return;clearTimeout(x.t);clearTimeout(x.r);x.el.remove();try{x.app.inert=false}catch{}xpIntro=null}
+addEventListener('pagehide',proIntroEnd);
+function setXp(v){if(xpIntro)return;if(v==='pro'&&!isPro())return upgradeView();if(v==='pro'&&document.documentElement.dataset.xp!=='pro')return proIntro(()=>{if(auth.currentUser&&isPro())setXpNow('pro')});setXpNow(v)}
+function setXpNow(v){localStorage.setItem('svn_xp_'+auth.currentUser.uid,v);applyXp();shell();render()}
 function homePro(c){const o=data.orders,DAY=864e5,e0=new Date();e0.setHours(23,59,59,999);const end=e0.getTime()+1,st=end-hr*DAY,pst=st-hr*DAY,hh=new Date().getHours(),first=(me.fullName||'').split(' ')[0]||'there';
 const at=x=>x.createdAt&&x.createdAt.toDate?x.createdAt.toDate().getTime():0,inR=(x,a,b)=>{const t=at(x);return t>=a&&t<b},sum=(L,f)=>L.reduce((a,x)=>a+Number(f(x)||0),0);
 const cur=o.filter(x=>inR(x,st,end)),prv=o.filter(x=>inR(x,pst,st)),rev=sum(cur,x=>x.total),prev=sum(prv,x=>x.total),prof=sum(cur,x=>x.grossProfit)-sum(data.expenses.filter(x=>inR(x,st,end)),x=>x.amount),debt=sum(o,x=>x.amountOwing),billed=sum(o,x=>x.total),rate=billed?Math.round((billed-debt)/billed*100):100,p=prev?(rev-prev)/prev*100:(rev?100:0);
