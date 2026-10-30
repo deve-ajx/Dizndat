@@ -1372,4 +1372,4 @@ c.querySelectorAll('.pa').forEach(b=>b.onclick=()=>done(()=>grant(b.dataset.u,36
 c.querySelectorAll('.pj').forEach(b=>b.onclick=()=>{const n=prompt('Reason');if(n===null)return;done(()=>updateDoc(doc(db,'manualPaymentRequests',b.dataset.i),{status:'reject',reviewReason:n,reviewedBy:curU().uid,reviewedAt:ts()}),'Rejected')})}
 catch(er){c.innerHTML=`<div class="pg"><div class="card"><h2>Staff dashboard</h2><p class="mut">${esc(er.code==='permission-denied'?'Permission denied. Publish the new Firestore rules first.':er.message)}</p></div></div>`}}
 if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
-</script></body></html>
+</script></body></html> 
