@@ -3027,12 +3027,21 @@ ${gsCoin(98,98,9.5,id,0)}${gsCoin(98,94.4,9.5,id,0)}${gsCoin(98,90.8,9.5,id,0)}$
 function gsErr(e){const c=(e&&e.code)||'',m=(e&&e.message)||'';if(c==='permission-denied')return 'Not allowed. Only the group administrator can do that, or your access has changed.';if(c==='unavailable'||c==='deadline-exceeded'||/offline|network/i.test(m))return 'No connection. Check your internet and try again.';if(c==='failed-precondition'&&/index/i.test(m)){const u=(m.match(/https:\/\/\S+/)||[''])[0];return 'INDEX:'+u}if(c==='already-exists'||c==='aborted')return 'That was already recorded. Refresh and check.';if(m==='gs-timeout')return 'This is taking longer than usual. It may save when your connection returns. Check before repeating.';return 'Something went wrong. Please try again.'}
 async function gsDo(btn,fn,ok){if(!navigator.onLine){toast('You are offline. Reconnect and try again.');return false}if(btn)btn.disabled=true;try{await Promise.race([fn(),new Promise((_,r)=>setTimeout(()=>r(Error('gs-timeout')),25000))]);if(ok)toast(ok);return true}catch(e){const m=gsErr(e);toast(m.startsWith('INDEX:')?'Group list needs a one-time setup in Firebase.':m);return false}finally{if(btn)btn.disabled=false}}
 /* ---------- my groups ---------- */
+/* Groups this device already knows about. Used when the optional Firestore index is not set up: each group is then read directly. */
+const gsKK=u=>'svn_gs_known_'+u;
+const gsKnown=u=>{try{const a=JSON.parse(localStorage.getItem(gsKK(u))||'[]');return Array.isArray(a)?a.filter(x=>typeof x==='string').slice(0,50):[]}catch{return[]}};
+const gsKnownSet=(u,a)=>{try{localStorage.setItem(gsKK(u),JSON.stringify([...new Set(a)].slice(0,50)))}catch{}};
+const gsRemember=gid=>{const u=gsUser();if(u&&gid){const a=gsKnown(u.uid);if(!a.includes(gid)){a.push(gid);gsKnownSet(u.uid,a)}}};
+const gsForget=gid=>{const u=gsUser();if(u)gsKnownSet(u.uid,gsKnown(u.uid).filter(x=>x!==gid))};
 function gsInit(force){const u=gsUser();if(G.on||!u||!u.uid)return Promise.resolve();if(GS.loading&&GS.p)return GS.p;if(GS.uid===u.uid&&GS.loaded&&!force)return Promise.resolve();GS.p=gsInit0(force);return GS.p}
 async function gsInit0(force){const u=gsUser();if(G.on||!u||!u.uid)return;if(GS.uid!==u.uid){GS.uid=u.uid;GS.list=[];GS.loaded=false;GS.sum={};GS.err=''}
  if(GS.loading||(GS.loaded&&!force))return;GS.loading=true;GS.err='';
  try{const sn=await _getDocs(_query(_collectionGroup(db,'members'),where('uid','==',u.uid)));
-  GS.list=sn.docs.map(d=>({...d.data(),id:d.id,gid:d.ref.parent.parent.id})).sort((a,b)=>gsMs(b.createdAt)-gsMs(a.createdAt));GS.loaded=true;await gsSums()}
- catch(e){GS.err=gsErr(e)}finally{GS.loading=false}
+  GS.list=sn.docs.map(d=>({...d.data(),id:d.id,gid:d.ref.parent.parent.id})).sort((a,b)=>gsMs(b.createdAt)-gsMs(a.createdAt));GS.local=false;gsKnownSet(u.uid,[...new Set([...gsKnown(u.uid),...GS.list.map(x=>x.gid)])]);GS.loaded=true;await gsSums()}
+ catch(e){const m=gsErr(e);
+  if(m.startsWith('INDEX:')){/* no index needed: read each remembered group's own membership record */
+   try{const out=[];await Promise.all(gsKnown(u.uid).map(async gid=>{try{const s=await _getDoc(gsDoc('savingsGroups',gid,'members',u.uid));if(s.exists())out.push({...s.data(),id:s.id,gid})}catch{}}));GS.list=out.sort((a,b)=>gsMs(b.createdAt)-gsMs(a.createdAt));GS.local=true;GS.loaded=true;await gsSums()}catch(e2){GS.err=gsErr(e2)}}
+  else GS.err=m}finally{GS.loading=false}
  if(GS.loaded&&page==='home'&&!isPro()&&!document.querySelector('#modal:not([hidden])')){try{render()}catch{}}
  gsLinkCheck()}
 async function gsSums(){const act=GS.list.filter(m=>m.status==='active').slice(0,8);
@@ -3046,10 +3055,10 @@ async function gsCreateGroup(f){const u=gsUser(),gid=gsNewId('savingsGroups'),lo
  b.set(gsDoc('savingsGroups',gid,'members',u.uid),{uid:u.uid,name:nm,status:'active',role:'admin',kind:'app',groupId:gid,groupName:f.name,arrangement:label,createdAt:T,updatedAt:T});
  b.set(gsDoc('savingsInvites',code),{groupId:gid,groupName:f.name,arrangement:label,adminId:u.uid,active:true,createdAt:T});
  b.set(gsDoc('savingsGroups',gid,'activity',logId),{type:'group_created',by:u.uid,byName:nm,text:'Created the group',createdAt:T});
- await b.commit();return gid}
+ await b.commit();gsRemember(gid);return gid}
 /* ---------- join ---------- */
 async function gsLookup(code){const s=await _getDoc(gsDoc('savingsInvites',code));if(!s.exists())return null;const d=s.data();return d.active?{...d,code}:{...d,code,revoked:true}}
-async function gsRequestJoin(inv){const u=gsUser(),T=gsTs();await _setDoc(gsDoc('savingsGroups',inv.groupId,'members',u.uid),{uid:u.uid,name:gsMe(),status:'pending',role:'member',kind:'app',groupId:inv.groupId,groupName:inv.groupName,arrangement:inv.arrangement,viaCode:inv.code,createdAt:T,updatedAt:T})}
+async function gsRequestJoin(inv){const u=gsUser(),T=gsTs();gsRemember(inv.groupId);await _setDoc(gsDoc('savingsGroups',inv.groupId,'members',u.uid),{uid:u.uid,name:gsMe(),status:'pending',role:'member',kind:'app',groupId:inv.groupId,groupName:inv.groupName,arrangement:inv.arrangement,viaCode:inv.code,createdAt:T,updatedAt:T})}
 /* ---------- live group ---------- */
 function gsUnwatch(){if(GS.cur&&GS.cur.un)GS.cur.un.forEach(f=>{try{f()}catch{}});GS.cur=null}
 function gsWatch(gid,onUp,onErr){gsUnwatch();const C=GS.cur={gid,g:null,members:[],pay:[],payouts:[],ann:[],act:[],ready:{},view:'overview',draft:'',exp:{},un:[]};
@@ -3209,7 +3218,7 @@ async function gsAct(a,b){const C=GS.cur,d=b.dataset,mem=id=>C&&C.members.find(m
  case 'reload':GS.loaded=false;GS.err='';gsHub();return;
  case 'request':{const inv=GS.pend;if(!inv)return;if(await gsDo(b,()=>gsRequestJoin(inv),'Request sent to the administrator')){GS.loaded=false;await gsInit(true);gsHub()}return}
  case 'open':{if(d.st==='active')return gsOpenGroup(d.gid);toast({pending:'Waiting for the administrator to approve you.',declined:'The administrator declined this request.',removed:'You were removed from this group.',left:'You left this group.'}[d.st]||'Not available.');return}
- case 'cancelreq':{if(await gsDo(b,()=>_deleteDoc(gsDoc('savingsGroups',d.gid,'members',gsUser().uid)),'Request cancelled')){GS.loaded=false;await gsInit(true);gsHub()}return}
+ case 'cancelreq':{if(await gsDo(b,()=>_deleteDoc(gsDoc('savingsGroups',d.gid,'members',gsUser().uid)),'Request cancelled')){gsForget(d.gid);GS.loaded=false;await gsInit(true);gsHub()}return}
  case 'expup':C.exp.up=!C.exp.up;return gsRender();
  case 'tab':C.tab=d.t;return gsRender();
  case 'approve':{const m=mem(d.id);if(!m)return;if(C.g.memberCount>=C.g.maxMembers){toast('The group is full ('+C.g.maxMembers+' members).');return}await gsDo(b,()=>gsApprove(m),m.name+' approved');return}
